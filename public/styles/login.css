@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'Neue Montreal';
+    src: url('/assets/font/NeueMontreal-Medium.woff') format('woff'),
+        url("/assets/font/NeueMontreal-Medium.woff2") format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+body {
+    background-color: black;
+    color: white;
+  }
+  
+input, button {
+    background-color: #f1f1f1;
+    color: black;
+    border: black;
+    background: transparent;
+}
+input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+  }
+label{
+    padding-right: 1vw;
+}
+#container{
+    position:absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Neue Montreal';
+}
+h1{
+    display: flex;
+    justify-content: center;
+    font-size : 4rem;
+    
+}
+form{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+    
+    
+}
+.form-group {
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    
+}
+button {
+    font-family: 'Neue Montreal';
+    display: flex;
+    width: 100px;
+    justify-self: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+.bubble {
+    width: 50vmin;
+    height: 50vmin;
+    background: black;
+    border: 4.5vmin solid black;
+    position: absolute;
+    top: calc(50% - (50vmin * 0.49));
+    left: calc(50% - (50vmin * 0.49));
+    overflow: visible;
+    border-radius: 48% 40% 62% 47%/61% 49% 64% 43%;
+    animation: rotate 35s infinite linear;
+    z-index: -10;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(1turn);
+    }
+  }
+  .bubble:before {
+    content: "";
+    position: absolute;
+    top: 5vmin;
+    left: 5vmin;
+    width: calc(100% - (50vmin * 0.3));
+    height: calc(100% - (50vmin * 0.3));
+    background: #7272AB;
+    border: 3.25vmin solid #7899D4;
+    border-radius: 41% 40% 50% 55%/49% 52% 51% 43%;
+    z-index: -2;
+    animation: rotateBefore 35s infinite linear;
+  }
+  
+  @keyframes rotateBefore {
+    0% {
+      transform: rotate(-2turn);
+    }
+  }
+  .bubble:after {
+    content: "";
+    position: absolute;
+    top: 10vmin;
+    left: 10vmin;
+    width: calc(100% - (25vmin));
+    height: calc(100% - (25vmin));
+    background: #7272AB;
+    border: 2.5vmin solid #7899D4;
+    border-radius: 42% 63% 51% 60%/47% 62% 42% 52%;
+    animation: rotateAfter 35s infinite linear;
+  }
+  
+  @keyframes rotateAfter {
+    0% {
+      transform: rotate(2turn);
+    }
+  }
+
