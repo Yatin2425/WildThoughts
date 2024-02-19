@@ -1,0 +1,17 @@
+body{
+    font-weight: bold;
+    
+}
+
+#activity{
+    display: flex;
+    flex-direction: column;
+    padding-top: 3em;
+    padding-left: 5em;
+    padding-right: 5em;
+    font-size: 2em;
+    
+}
+#YourPosts{
+    bottom: 7vh;
+}

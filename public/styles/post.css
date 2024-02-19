@@ -1,0 +1,49 @@
+body{
+    overflow: none;
+    overflow-y: none;
+    overflow-x: none;
+    font-weight: bold;
+    
+}
+
+#blog{
+    display: flex;
+    flex-direction: column;
+    height: 70rem;
+    width: 70rem;
+}
+#blogform{
+    height:40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    
+}
+#gowild{
+    bottom:7vh;
+    font-weight: bold;
+}
+#postBtn{
+    background: transparent;
+    border: 1;
+    border-color: white;
+    width: 10rem;
+   
+    
+    
+
+}
+.blogbtn{
+    display: flex;
+    justify-content: center;
+    padding: 1vh;
+}
+label{
+    display: flex;
+    justify-content: center;
+}
+.form-control{
+    background:transparent;
+    color: white;
+}

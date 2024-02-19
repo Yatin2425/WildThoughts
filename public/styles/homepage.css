@@ -11,7 +11,8 @@ body {
     color: white;
     font-family: "Neue Montreal";
     min-height: 100vh;
-    overflow: none;
+    overflow: hidden;
+    font-weight: bold;
   }
 
   footer {
@@ -20,7 +21,7 @@ body {
     justify-content: space-evenly;
     bottom: 6vh;
     width: 100%;
-    box-sizing: border-box;
+
     font-size: 2rem;
     z-index: 1;
 }
@@ -47,13 +48,13 @@ h1{
 
 }
 .viewhovered {
-    background-color: #700548; /* Set your desired background color on hover */
-    color: #7899D4; /* Set your desired text color on hover */
+    background-color: #C84D60; /* Set your desired background color on hover */
+    color: #CAD6E7; /* Set your desired text color on hover */
 
 }
 .profilehovered {
-    background-color: #ffcc00; /* Set your desired background color on hover */
-    color: #333; /* Set your desired text color on hover */
+    background-color: #AFB14F; /* Set your desired background color on hover */
+    color: #DBE8D8; /* Set your desired text color on hover */
 
 }
 
