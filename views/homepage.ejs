@@ -1,97 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WildThoughts</title>
-    <link rel="stylesheet" href="/styles/homepage.css">
+    <link rel="stylesheet" href="/styles/homepage.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container-fluid" id="container">
-        <div class = "column" id="carousel">
-            <img src="/assets/images/image1.jpeg" alt="image1">
-            <img src="/assets/images/image2.jpeg" alt="image2">
-            <img src="/assets/images/image3.jpeg" alt="image3">
-            <img src="/assets/images/image4.jpeg" alt="image4">
-          
-        </div>
-        <div class = "column" id="text">
-            <p>An Anonymous Blog website for all your wild thoughts. :3</p>
-        </div>
-
-
-
+      <div class="column" id="carousel">
+        <img src="/assets/images/image1.jpeg" alt="image1" />
+        <img src="/assets/images/image2.jpeg" alt="image2" />
+        <img src="/assets/images/image3.jpeg" alt="image3" />
+        <img src="/assets/images/image4.jpeg" alt="image4" />
+      </div>
+      <div class="column" id="text">
+        <p>An Anonymous Blog website for all your wild thoughts. :3</p>
+      </div>
     </div>
     <h1>WILD THOUGHTS</h1>
 
     <footer>
-        <div id="Post">
-            <a  href="/post"  class="large-nav-links" style="color: rgb(255, 255, 255);  text-decoration: none;">
-                <span id="post">Post</span>
-                
-            </a>
-        </div>
-        <div id="View">
-            <a  href="/view" class="large-nav-links" style="color: rgb(255, 255, 255);  text-decoration: none;">
-                <span id="view">View</span>
-                
-            </a>
-        </div>
-        <div id="Profile">
-            <a  href="" target="_blank" class="large-nav-links" style="color: rgb(255, 255, 255);  text-decoration: none;">
-                <span id="profile">Profile</span>
-                
-            </a>
-        </div>
+      <div id="Post">
+        <a
+          href="/post"
+          class="large-nav-links"
+          style="color: rgb(255, 255, 255); text-decoration: none"
+        >
+          <span id="post">Post</span>
+        </a>
+      </div>
+      <div id="View">
+        <a
+          href="/view"
+          class="large-nav-links"
+          style="color: rgb(255, 255, 255); text-decoration: none"
+        >
+          <span id="view">View</span>
+        </a>
+      </div>
+      <div id="Profile">
+        <a
+          href=""
+          
+          class="large-nav-links"
+          style="color: rgb(255, 255, 255); text-decoration: none"
+        >
+          <span id="profile">Profile</span>
+        </a>
+      </div>
     </footer>
     <script>
-        $(document).ready(function(){
-            $('#post').hover(function(){
-                $('body').addClass('posthovered');
-            }, function(){
-                $('body').removeClass('posthovered');
-            });
-        });
+      $(document).ready(function () {
+        $("#post").hover(
+          function () {
+            $("body").addClass("posthovered");
+          },
+          function () {
+            $("body").removeClass("posthovered");
+          }
+        );
+      });
     </script>
     <script>
-        $(document).ready(function(){
-            $('#view').hover(function(){
-                $('body').addClass('viewhovered');
-            }, function(){
-                $('body').removeClass('viewhovered');
-            });
-        });
+      $(document).ready(function () {
+        $("#view").hover(
+          function () {
+            $("body").addClass("viewhovered");
+          },
+          function () {
+            $("body").removeClass("viewhovered");
+          }
+        );
+      });
     </script>
     <script>
-        $(document).ready(function(){
-            $('#profile').hover(function(){
-                $('body').addClass('profilehovered');
-            }, function(){
-                $('body').removeClass('profilehovered');
-            });
-        });
+      $(document).ready(function () {
+        $("#profile").hover(
+          function () {
+            $("body").addClass("profilehovered");
+          },
+          function () {
+            $("body").removeClass("profilehovered");
+          }
+        );
+      });
     </script>
     <script>
-        $(document).ready(function () {
-            // Duplicate images for seamless scrolling effect
-            var images = $('#carousel img').clone();
-            $('#carousel').append(images);
-        
-            // Set random margin for each image
-            $('#carousel img').each(function () {
-                var randomMargin = Math.floor(Math.random() * 300) + 10; // Adjust the range as needed
-                $(this).css('margin-bottom', randomMargin + 'px');
-                $(this).css('margin-right', randomMargin + 'px');
-                $(this).css('margin-left', randomMargin + 'px');
-            });
-        
-            // Add animation class to start scrolling
-            $('#carousel').addClass('animation-container');
-        });
-    </script>
+      $(document).ready(function () {
+        // Duplicate images for seamless scrolling effect
+        var images = $("#carousel img").clone();
+        $("#carousel").append(images);
 
+        // Set random margin for each image
+        $("#carousel img").each(function () {
+          var randomMargin = Math.floor(Math.random() * 300) + 10; // Adjust the range as needed
+          $(this).css("margin-bottom", randomMargin + "px");
+          $(this).css("margin-right", randomMargin + "px");
+          $(this).css("margin-left", randomMargin + "px");
+        });
 
-</body>
+        // Add animation class to start scrolling
+        $("#carousel").addClass("animation-container");
+      });
+    </script>
+  </body>
 </html>

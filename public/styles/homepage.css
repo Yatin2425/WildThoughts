@@ -6,6 +6,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 body {
     background-color: black;
     color: white;
@@ -13,9 +14,9 @@ body {
     min-height: 100vh;
     overflow: hidden;
     font-weight: bold;
-  }
+}
 
-  footer {
+footer {
     position: absolute;
     display: flex;
     justify-content: space-evenly;
@@ -28,67 +29,82 @@ body {
 
 #container {
     display: grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
-h1{
+
+h1 {
     display: flex;
     justify-content: space-around;
     position: absolute;
     width: 100%;
-    font-size : 9rem;
+    font-size: 9rem;
     z-index: 1;
-    bottom:-3vh;
- 
-    
+    bottom: -3vh;
+
+
 
 }
+
 .posthovered {
-        background-color: #362023; /* Set your desired background color on hover */
-        color: #7272AB; /* Set your desired text color on hover */
+    background-color: #362023;
+    /* Set your desired background color on hover */
+    color: #7272AB;
+    /* Set your desired text color on hover */
 
 }
+
 .viewhovered {
-    background-color: #C84D60; /* Set your desired background color on hover */
-    color: #CAD6E7; /* Set your desired text color on hover */
+    background-color: #C84D60;
+    /* Set your desired background color on hover */
+    color: #CAD6E7;
+    /* Set your desired text color on hover */
 
 }
+
 .profilehovered {
-    background-color: #AFB14F; /* Set your desired background color on hover */
-    color: #DBE8D8; /* Set your desired text color on hover */
+    background-color: #AFB14F;
+    /* Set your desired background color on hover */
+    color: #DBE8D8;
+    /* Set your desired text color on hover */
 
 }
 
-#text{
+#text {
     font-size: 2rem;
 }
 
-img{
+img {
     width: 20rem;
     height: 20rem;
 
 }
+
 #carousel {
-    height: 100vh; /* Set the desired height for your carousel */
+    height: 100vh;
+    /* Set the desired height for your carousel */
     overflow-y: scroll;
-    
+
     display: flex;
     flex-direction: column;
 
-    
-    
+
+
 }
-#carousel::-webkit-scrollbar{
+
+#carousel::-webkit-scrollbar {
     display: none;
 }
-#carousel img{
+
+#carousel img {
     animation: scrollAnimation 30s linear infinite;
 }
+
 @keyframes scrollAnimation {
     0% {
         transform: translateY(0);
     }
+
     100% {
         transform: translateY(-100%);
     }
 }
-
