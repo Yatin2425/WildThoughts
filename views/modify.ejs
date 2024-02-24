@@ -14,12 +14,12 @@
   </head>
   <body>
     <div class="container" id="blog">
-        <form
+      <form
         id="blogform"
-        action="/api/posts/<%=posts.id%>"
+        action="/postmodify/<%=posts[0].postid%>"
         method="post"
         enctype="application/x-www-form-urlencoded"
-    >
+      >
         <div class="form-group" id="bloggroup">
           <label for="blogTitle">Title</label>
           <input
@@ -27,7 +27,7 @@
             class="form-control"
             id="blogTitle"
             name="blogTitle"
-            value="<%=posts.title%>"
+            value="<%=posts[0].blogtitle%>"
             required
           />
         </div>
@@ -38,9 +38,10 @@
             id="blogContent"
             name="blogContent"
             rows="8"
-    
             required
-          ><%=posts.content%></textarea>
+          >
+<%=posts[0].blogcontent%></textarea
+          >
         </div>
         <div class="blogbtn">
           <button type="submit" class="btn btn-primary" id="postBtn">

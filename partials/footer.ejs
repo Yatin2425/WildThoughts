@@ -1,59 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WildThoughts</title>
-    <link rel="stylesheet" href="/styles/homepage.css">
+    <link rel="stylesheet" href="/styles/homepage.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <footer>
-        <div id="Post">
-            <a  href="/post"  class="large-nav-links" style="color: rgb(255, 255, 255);  text-decoration: none;">
-                <span id="post">Post</span>
-                
-            </a>
-        </div>
-        <div id="View">
-            <a  href="/view"  class="large-nav-links" style="color: rgb(255, 255, 255);  text-decoration: none;">
-                <span id="view">View</span>
-                
-            </a>
-        </div>
-        <div id="Profile">
-            <a  href=""  class="large-nav-links" style="color: rgb(255, 255, 255);  text-decoration: none;">
-                <span id="profile">Profile</span>
-                
-            </a>
-        </div>
+      <div id="Post">
+        <a
+          href="/post"
+          class="large-nav-links"
+          style="color: rgb(255, 255, 255); text-decoration: none"
+        >
+          <span id="post">Post</span>
+        </a>
+      </div>
+      <div id="View">
+        <a
+          href="/view"
+          class="large-nav-links"
+          style="color: rgb(255, 255, 255); text-decoration: none"
+        >
+          <span id="view">View</span>
+        </a>
+      </div>
+      <div id="Profile">
+        <a
+          href=""
+          class="large-nav-links"
+          style="color: rgb(255, 255, 255); text-decoration: none"
+        >
+          <span id="profile">Profile</span>
+        </a>
+      </div>
+      <div id="Home">
+        <a
+          href="/homepage"
+          class="large-nav-links"
+          style="color: rgb(255, 255, 255); text-decoration: none"
+        >
+          <span id="profile">Home</span>
+        </a>
+      </div>
     </footer>
     <script>
-        $(document).ready(function(){
-            $('#post').hover(function(){
-                $('body').addClass('posthovered');
-            }, function(){
-                $('body').removeClass('posthovered');
-            });
-        });
+      $(document).ready(function () {
+        $("#post").hover(
+          function () {
+            $("body").addClass("posthovered");
+          },
+          function () {
+            $("body").removeClass("posthovered");
+          }
+        );
+      });
     </script>
     <script>
-        $(document).ready(function(){
-            $('#view').hover(function(){
-                $('body').addClass('viewhovered');
-            }, function(){
-                $('body').removeClass('viewhovered');
-            });
-        });
+      $(document).ready(function () {
+        $("#view").hover(
+          function () {
+            $("body").addClass("viewhovered");
+          },
+          function () {
+            $("body").removeClass("viewhovered");
+          }
+        );
+      });
     </script>
     <script>
-        $(document).ready(function(){
-            $('#profile').hover(function(){
-                $('body').addClass('profilehovered');
-            }, function(){
-                $('body').removeClass('profilehovered');
-            });
-        });
+      $(document).ready(function () {
+        $("#profile").hover(
+          function () {
+            $("body").addClass("profilehovered");
+          },
+          function () {
+            $("body").removeClass("profilehovered");
+          }
+        );
+      });
     </script>
-</body>
+  </body>
 </html>

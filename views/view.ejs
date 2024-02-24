@@ -17,15 +17,16 @@
       <ul id="postsList">
         <% posts.forEach(post=> { %>
         <li>
-          <h2><%=post.title%></h2>
+          <h2><%=post.blogtitle%></h2>
           <p id="postcontent">
-            <%=post.content%>
+            <%=post.blogcontent%>
             <br />
             <br />
 
-            <a class="edit" href="/modify/<%= post.id %>">Edit</a>
+            <a class="edit" href="/modify/<%= post.postid %>">Edit</a>
 
-            <a class="delete" href="/api/posts/delete/<%= post.id %>">Delete</a>
+            <a class="delete" href="/postdelete/<%=posts[0].postid%>">Delete</a>
+
             <br />
           </p>
         </li>
