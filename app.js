@@ -2,20 +2,26 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import pg from "pg";
+import guid from "guid";
+import bcrypt from "bcrypt";
+import env from "dotenv";
+
 
 const app = express();
 const port = 3000;
 const API_URL = "http://localhost:4000";
+const saltRounds = 10
+env.config();
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const dbConfig = {
-  user: "postgres",
-  host: "localhost",
-  database: "WildThoughts",
-  password: "10042425#yt",
-  port: 5432,
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DATABASE,
+  password: process.env.PASSWORD,
+  port: process.env.PORT,
 };
 const { Pool } = pg;
 
@@ -48,6 +54,7 @@ app.get("/postdelete/:id", async (req, res) => {
   }
 });
 
+
 app.get("/modify/:id", async (req, res) => {
   let client = null;
   try {
@@ -79,6 +86,10 @@ app.get("/homepage", (req, res) => {
 app.get("/post", (req, res) => {
   res.render("post.ejs");
 });
+app.get("/register", (req, res) => {
+  res.render("register.ejs");
+});
+
 
 app.get("/view", async (req, res) => {
   let client = null;
@@ -97,48 +108,94 @@ app.get("/view", async (req, res) => {
     }
   }
 });
-app.post("/", (req, res) => {
-  res.redirect("/handle-login");
-});
 
-app.post("/handle-login", async (req, res) => {
+app.post("/register", async (req, res) => {
+  const email = req.body.InputEmail;
+  const username = req.body.InputUsername;
+  const password = req.body.InputPassword;
+  const idObject = guid.create();
+  const userId = idObject.value;
   let client = null;
+
   try {
-    const email = req.body.InputEmail;
-    const username = req.body.InputUsername;
+    const query = "SELECT * FROM userinfo WHERE useremail = $1";
+    const insertQuery = "INSERT INTO userinfo (userid, useremail, username, userhash) VALUES ($1, $2, $3, $4)";
 
-    // Assuming you have a 'posts' table in your database
-    const query = "INSERT INTO UserInfo (username , useremail) VALUES ($1, $2)";
-    const values = [email, username];
+    client = await db.connect();
+    const result = await client.query(query, [email]);
 
-    client = await db.connect(); // Establish database connection
-
-    const result = await client.query(query, values);
-
-    // Release the client back to the pool
-
-    res.redirect("/homepage");
-  } catch (error) {
-    console.error("Error creating user:", error);
-    res.status(500).json({ message: "Error creating user" });
+    if (result.rows.length > 0) {
+      res.send("User already exists!");
+      // Later, you can redirect to the login page with a prompt.
+    } else {
+      const hash = await bcrypt.hash(password, saltRounds);
+      const values = [userId, email, username, hash];
+      await client.query(insertQuery, values);
+      res.redirect("/homepage"); // Provide the correct route path or render homepage.ejs
+    }
+  } catch (err) {
+    console.error(err);
   } finally {
-    // Ensure that the client is always released or closed, even in case of an error
     if (client) {
       client.release();
     }
   }
 });
 
+
+app.post("/", (req, res) => {
+  res.redirect("/handle-login");
+});
+
+app.post("/handle-login", async (req, res) => {
+  let client = null;
+
+  try {
+    const username = req.body.InputUsername;
+    const password = req.body.InputPassword;
+
+    const query = "SELECT * FROM UserInfo WHERE username = $1";
+    const values = [username];
+
+    client = await db.connect(); // Establish database connection
+
+    const result = await client.query(query, values);
+
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      const passwordMatch = await bcrypt.compare(password, user.userhash);
+
+      if (passwordMatch) {
+        res.redirect("/homepage");
+      } else {
+        res.send("Wrong password");
+      }
+    } else {
+      res.send("User not found!");
+    }
+
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ message: "Error during login" });
+  } finally {
+    if (client) {
+      client.release();
+    }
+  }
+});
+
+
 app.post("/handle-post", async (req, res) => {
   let client = null;
   try {
     const { blogTitle, blogContent } = req.body;
-    const time = new Date();
+    const idObject = guid.create();
+    const idValue = idObject.value;
 
     // Assuming you have a 'posts' table in your database
     const query =
-      "INSERT INTO Posts (blogtitle, blogcontent, blogtime) VALUES ($1, $2, $3)";
-    const values = [blogTitle, blogContent, time];
+      "INSERT INTO Posts (postid , blogtitle, blogcontent) VALUES ($1, $2, $3 )";
+    const values = [idValue, blogTitle, blogContent];
 
     client = await db.connect(); // Establish database connection
 

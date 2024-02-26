@@ -132,3 +132,9 @@ button {
     transform: rotate(2turn);
   }
 }
+a{
+  color:white;
+  text-decoration: none;
+  justify-self: center;
+  font-size: small;
+}
