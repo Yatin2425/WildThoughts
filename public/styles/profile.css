@@ -1,0 +1,44 @@
+body {
+    font-weight: bold;
+
+}
+
+#activity {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 5em;
+    padding-right: 5em;
+    font-size: 1.5em;
+    overflow-y: scroll;
+    height: 33rem;
+    /* Adjust the height according to your needs */
+    margin-top: 5rem;
+}
+
+
+
+#postcontent {
+
+    border-bottom: 1px solid;
+    /* You can adjust the color and style as needed */
+    padding-bottom: 10px;
+    /* Optional: add some spacing between paragraphs */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+
+
+.edit,
+.delete {
+    color: white;
+
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    font-style: italic;
+    text-decoration: none;
+    padding: 0.25%;
+}

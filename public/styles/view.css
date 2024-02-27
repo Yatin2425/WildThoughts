@@ -5,17 +5,36 @@ body {
 
 #activity {
     display: flex;
-    flex-direction: column;
-
-    padding-left: 5em;
-    padding-right: 5em;
-    font-size: 1.5em;
+    flex-wrap: wrap;
+    gap: 2rem; /* Adjust gap as needed */
+    justify-content: center;
+    height: 20em;
+    width: 50em;
     overflow-y: scroll;
-    height: 35rem;
-    /* Adjust the height according to your needs */
+    font-size: 1.5em;
     margin-top: 5rem;
-}
-
+    padding: 2rem; /* Adjust padding as needed */
+    box-sizing: border-box;
+  }
+  
+  .card {
+    flex-basis: calc(50% - 1rem); /* 50% width with gap between cards */
+    max-width: calc(50% - 1rem); /* Adjust max-width as needed */
+    box-sizing: border-box;
+    background-color: transparent;
+    color:white;
+    border-color: white;
+    
+  }
+  .card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  a{
+    text-decoration: none;
+    color: white;
+  }
 
 
 #postcontent {
@@ -39,3 +58,5 @@ body {
     text-decoration: none;
     padding: 0.25%;
 }
+
+  

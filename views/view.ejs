@@ -13,27 +13,23 @@
     <link rel="stylesheet" href="/styles/view.css" />
   </head>
   <body>
-    <div class="container" id="activity">
-      <ul id="postsList">
-        <% posts.forEach(post=> { %>
-        <li>
-          <h2><%=post.blogtitle%></h2>
-          <p id="postcontent">
-            <%=post.blogcontent%>
-            <br />
-            <br />
+    <div class= "container" id= "activity">
+      <% posts.forEach((post, index) => { %>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.blogtitle %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= post.subtitle %></h6>
+            <p class="card-text"><%= post.blogcontent %></p>
+            <a href="/blog/<%= post.postid %>">Read More</a>
+           
+          </div>
+        </div>
+      <% }); %>
 
-            <a class="edit" href="/modify/<%= post.postid %>">Edit</a>
-
-            <a class="delete" href="/postdelete/<%=posts[0].postid%>">Delete</a>
-
-            <br />
-          </p>
-        </li>
-
-        <% }); %>
-      </ul>
     </div>
+
+    
+    
 
     <%-include("../partials/footer.ejs") %>
   </body>
