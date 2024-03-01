@@ -15,12 +15,15 @@ const port = 3000;
 const API_URL = "http://localhost:4000";
 const saltRounds = 10;
 env.config();
-
+const oneDayInSeconds = 24 * 60 * 60; // One day in seconds
 app.use(
   session({
     secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
+    cookie: {
+      maxAge: oneDayInSeconds * 1000, // Convert seconds to milliseconds
+    },
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -40,8 +43,14 @@ const { Pool } = pg;
 
 const db = new Pool(dbConfig);
 
-
-app.get("/", (req, res) => {
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next(); // User is authenticated, proceed to the next middleware/route handler
+  } else {
+    res.redirect("/login"); // User is not authenticated, redirect to the login page
+  }
+}
+app.get("/", isAuthenticated, (req, res) => {
   res.render("homepage.ejs");
 });
 app.get("/login", (req, res) => {
@@ -53,8 +62,8 @@ app.get("/modify", (req, res) => {
 });
 
 app.get("/blog", (req, res) => {
-  res.render("blog.ejs"); 
-})
+  res.render("blog.ejs");
+});
 
 app.get("/postdelete/:id", async (req, res) => {
   let client = null;
@@ -121,8 +130,16 @@ app.get("/blog/:id", async (req, res) => {
     }
   }
 });
-
-app.get("/homepage", (req, res) => {
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.status(500).send("Internal Server Error");
+    }
+    res.redirect("/login"); // Redirect to the login page or any other desired destination
+  });
+});
+app.get("/homepage", isAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     // Assuming user is defined somewhere
     const user = { id: req.user.id, username: req.user.username };
@@ -209,8 +226,6 @@ app.get("/profile", async (req, res) => {
   }
 });
 
-
-
 app.post("/register", async (req, res) => {
   const email = req.body.InputEmail;
   const username = req.body.InputUsername;
@@ -244,13 +259,7 @@ app.post("/register", async (req, res) => {
     }
   }
 });
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next(); // User is authenticated, proceed to the next middleware/route handler
-  } else {
-    res.redirect("/login"); // User is not authenticated, redirect to the login page
-  }
-}
+
 app.post(
   "/login",
   passport.authenticate("local", {
@@ -273,11 +282,21 @@ app.post("/handle-post", async (req, res) => {
     const { blogTitle, blogContent } = req.body;
     const idObject = guid.create();
     const idValue = idObject.value;
+    // Create a new Date object
+    const currentDate = new Date();
+    // Extract day, month, and year
+    const day = currentDate.getDate();
+
+    const month = currentDate.getMonth() + 1; // Note: Months are zero-indexed, so we add 1
+    const year = currentDate.getFullYear();
+
+    // Create a formatted string for the current date
+    const currentDateString = `${day}/${month}/${year}`;
 
     // Assuming you have a 'posts' table in your database
     const query =
-      "INSERT INTO Posts (postid, blogtitle, blogcontent, blogauthor) VALUES ($1, $2, $3, $4)";
-    const values = [idValue, blogTitle, blogContent, blogAuthor];
+      "INSERT INTO Posts (postid, blogtitle, blogcontent, blogauthor , blogtime) VALUES ($1, $2, $3, $4 , $5)";
+    const values = [idValue, blogTitle, blogContent, blogAuthor, currentDateString];
 
     // Establish database connection
     client = await db.connect();
@@ -297,7 +316,6 @@ app.post("/handle-post", async (req, res) => {
     }
   }
 });
-
 
 app.post("/postmodify/:id", async (req, res) => {
   let client = null;
